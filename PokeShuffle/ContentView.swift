@@ -8,17 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @State var pokemonGuess: String = ""
+    @State var gameState: GameState = .noGuess
+
     var body: some View {
         ZStack {
             BackgroundView()
             VStack() {
-                TitleTextView()
-                PokeImageView(pokemonImage: "questionmark")
-                Button(action: {
+                Spacer()
+                HStack {
+                    PokemonImageView(gameState: $gameState)
+                    GuessStateTextView(gameState: $gameState)
+                }
+                PokemonLogoTextView()
+                GuessTextFieldView(pokemonGuess: $pokemonGuess)
+                    .padding(.top, 10)
+                SubmitButtonView(pokemonGuess: $pokemonGuess,
+                                 gameState: $gameState)
+                    .padding(.top, 10)
 
-                }, label: {
-                    ButtonView()
-                })
+                ShuffleButtonView(gameState: $gameState)
+                    .padding(.top, 10)
                 Spacer()
 
             }
@@ -36,44 +47,84 @@ struct ContentView_Previews: PreviewProvider {
 
 struct BackgroundView: View {
     var body: some View {
-        LinearGradient(colors: [Color("pokeYellow"), Color("pokeBlue")],
+        LinearGradient(colors: [Color("pokemonRed"), Color("pokemonYellow")],
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
         .edgesIgnoringSafeArea(.all)
     }
 }
 
-struct TitleTextView: View {
+struct PokemonLogoTextView: View {
     var body: some View {
-        Text("PokeShuffle")
-            .foregroundColor(.white)
-            .font(.system(size: 42, weight: .medium, design: .default))
+        StrokeText(text: "Pokémon", textSize: 55)
+            .foregroundColor(Color.pokemonYellow)
+            .font(.system(size: 55, weight: .bold, design: .default))
     }
 }
 
-struct PokeImageView: View {
-    var pokemonImage: String
+
+struct GuessStateTextView: View {
+
+    @Binding var gameState: GameState
 
     var body: some View {
-        Image(systemName: pokemonImage)
-            .renderingMode(.original)
-            .symbolRenderingMode(.monochrome)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 150, height: 150)
-            .padding(.top, 150)
+        StrokeText(text: gameState.gameText,
+                   textSize: gameState.textSize,
+                   strokeWidth: gameState.strokeWidth,
+                   strokeColor: Color.pokemonYellow,
+                   foregroundColor: Color.pokemonNavyBlue)
+    }
+
+}
+
+struct StrokeText: View {
+    let text: String
+    let textSize: CGFloat
+    let strokeWidth: CGFloat
+    let strokeColor: Color
+    let foregroundColor: Color
+
+    init(text: String,
+         textSize: CGFloat,
+         strokeWidth: CGFloat = 2.5,
+         strokeColor: Color = Color.pokemonNavyBlue,
+         foregroundColor: Color = Color.pokemonYellow) {
+        self.text = text
+        self.textSize = textSize
+        self.strokeWidth = strokeWidth
+        self.strokeColor = strokeColor
+        self.foregroundColor = foregroundColor
+    }
+
+    var body: some View {
+        ZStack{
+            ZStack{
+                Text(text).offset(x:  strokeWidth, y:  strokeWidth)
+                Text(text).offset(x: -strokeWidth, y: -strokeWidth)
+                Text(text).offset(x: -strokeWidth, y:  strokeWidth)
+                Text(text).offset(x:  strokeWidth, y: -strokeWidth)
+            }
+            .foregroundColor(strokeColor)
+            Text(text)
+        }
+        .foregroundColor(foregroundColor)
+        .font(.system(size: textSize,
+                      weight: .bold,
+                      design: .default))
+
     }
 }
 
-struct ButtonView: View {
-    var body: some View {
-        Text("Shuffle")
+struct GuessTextFieldView: View {
+
+    @Binding var pokemonGuess: String
+
+    var body: some View  {
+        TextField("Who's that pokemon", text: $pokemonGuess)
+            .multilineTextAlignment(.center)
             .frame(width: 280, height: 50)
-            .foregroundColor(Color("pokeNavyBlue"))
-            .background(.white)
-            .font(.system(size: 25, weight: .medium, design: .default))
-            .cornerRadius(30)
-            .padding(.top, 150)
+            .background(Color.white)
+            .disableAutocorrection(true)
 
     }
 }
