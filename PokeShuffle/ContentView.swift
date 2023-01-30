@@ -9,30 +9,36 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var pokemonGuess: String = ""
-    @State var gameState: GameState = .noGuess
-
+    @StateObject var game = Game()
+    
     var body: some View {
         ZStack {
             BackgroundView()
             VStack() {
                 Spacer()
+                VStack() {
+                    StreakTextView()
+                    Image("pokeball")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                    RemainingGuessesView()
+                }
                 HStack {
-                    PokemonImageView(gameState: $gameState)
-                    GuessStateTextView(gameState: $gameState)
+                    PokemonImageView()
+                    GuessStateTextView()
                 }
                 PokemonLogoTextView()
-                GuessTextFieldView(pokemonGuess: $pokemonGuess)
+                GuessTextFieldView()
                     .padding(.top, 10)
-                SubmitButtonView(pokemonGuess: $pokemonGuess,
-                                 gameState: $gameState)
+                SubmitButtonView()
                     .padding(.top, 10)
 
-                ShuffleButtonView(gameState: $gameState)
+                ShuffleButtonView()
                     .padding(.top, 10)
                 Spacer()
 
             }
+            .environmentObject(game)
             .padding(.top, 10)
         }
 
@@ -54,6 +60,28 @@ struct BackgroundView: View {
     }
 }
 
+struct RemainingGuessesView: View {
+
+    @EnvironmentObject var game: Game
+
+    var body: some View {
+        StrokeText(text: "Guesses: \(game.remainingGuesses)",
+                   textSize: 25,
+                   strokeWidth: 1.50)
+    }
+}
+
+struct StreakTextView: View {
+
+    @EnvironmentObject var game: Game
+
+    var body: some View {
+        StrokeText(text: "Streak: \(game.streakCount)",
+                   textSize: 25,
+                   strokeWidth: 1.50)
+    }
+}
+
 struct PokemonLogoTextView: View {
     var body: some View {
         StrokeText(text: "Pokémon", textSize: 55)
@@ -65,12 +93,40 @@ struct PokemonLogoTextView: View {
 
 struct GuessStateTextView: View {
 
-    @Binding var gameState: GameState
+//    @Binding var gameState: GameState
+    @EnvironmentObject var game: Game
+
+    var gameText: String {
+        switch game.guessState {
+        case .guessMatch, .guessMismatch:
+            return Pokemon.currentName.capitalized
+        case .emptyGuess, .noGuess, .shuffle:
+            return "?"
+        }
+    }
+
+    var textSize: CGFloat {
+        switch(game.guessState) {
+        case .guessMatch, .guessMismatch:
+            return 25
+        case .emptyGuess, .noGuess, .shuffle:
+            return 100
+        }
+    }
+
+    var strokeWidth: CGFloat {
+        switch(game.guessState) {
+        case .guessMatch, .guessMismatch:
+            return 1.0
+        case .emptyGuess, .noGuess, .shuffle:
+            return 2.5
+        }
+    }
 
     var body: some View {
-        StrokeText(text: gameState.gameText,
-                   textSize: gameState.textSize,
-                   strokeWidth: gameState.strokeWidth,
+        StrokeText(text: gameText,
+                   textSize: textSize,
+                   strokeWidth: strokeWidth,
                    strokeColor: Color.pokemonYellow,
                    foregroundColor: Color.pokemonNavyBlue)
     }
@@ -117,10 +173,10 @@ struct StrokeText: View {
 
 struct GuessTextFieldView: View {
 
-    @Binding var pokemonGuess: String
+    @EnvironmentObject var game: Game
 
     var body: some View  {
-        TextField("Who's that pokemon", text: $pokemonGuess)
+        TextField("", text: $game.pokemonGuess)
             .multilineTextAlignment(.center)
             .frame(width: 280, height: 50)
             .background(Color.white)

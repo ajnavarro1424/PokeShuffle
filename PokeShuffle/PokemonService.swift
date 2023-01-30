@@ -16,9 +16,9 @@ class PokemonService {
     let logger = Logger(subsystem: "com.frodude247.PokeShuffle", category: "PokeService")
 
     func getPokemon(with id: Int, _ completion: @escaping (Error?) -> Void) {
-        logger.log("Started getPokemon call with id: \(id)")
 
-        PokemonAPI().pokemonService.fetchPokemon(id) { result in
+        logger.log("getPokemon call with id: \(id)")
+        PokemonAPI().pokemonService.fetchPokemon(id) { [weak self] result in
             switch(result) {
             case .success(let pokemon):
                 if let imageURLString = pokemon.sprites?.frontDefault,
@@ -29,11 +29,11 @@ class PokemonService {
                         Pokemon.current.imageURL = imageURL
 
                         completion(nil)
-                        self.logger.log("getPokemon success")
+                        self?.logger.log("getPokemon success: \n\(name), \(imageURL)")
                 }
             case .failure(let error):
                 completion(error)
-                self.logger.log("\(error.localizedDescription)")
+                self?.logger.log("\(error.localizedDescription)")
             }
         }
     }

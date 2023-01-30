@@ -10,23 +10,23 @@ import SwiftUI
 
 struct PokemonImageView: View {
 
-    @Binding var gameState: GameState
+    @EnvironmentObject var game: Game
     @StateObject private var viewModel = PokemonImageViewModel()
 
     var body: some View {
-        if case .guessMatch = gameState {
+        if case .guessMatch = game.guessState {
             return AnyView(displayPokemonImage())
         }
-        else if case .guessMismatch = gameState {
+        else if case .guessMismatch = game.guessState {
             return AnyView(displayPokemonImage())
         }
-        else if case .shuffle = gameState {
+        else if case .shuffle = game.guessState {
             return AnyView(ProgressView()
                 .tint(Color.pokemonNavyBlue)
                 .frame(width: 200, height: 200)
                 .onAppear(perform: {
                     viewModel.refreshModel()
-                    gameState = .noGuess
+                    game.guessState = .noGuess
                 }))
         }
         else {
@@ -39,9 +39,10 @@ struct PokemonImageView: View {
                     }
                 } else if phase.error != nil {
                     // Error state
-                    Image(systemName: "x.square.fill")
+                    Image(systemName: "questionmark")
                         .resizable()
-                        .foregroundColor(.red)
+                        .foregroundColor(Color.pokemonBlue)
+                        .aspectRatio(contentMode: .fit)
                 } else {
                     // Loading state
                     ProgressView()
@@ -50,8 +51,8 @@ struct PokemonImageView: View {
             }
             .frame(width: 200, height: 200)
             .onAppear(perform: {
-                viewModel.getPokemon()
-                gameState = .noGuess
+                viewModel.fetchPokemon()
+                game.guessState = .noGuess
             }))
         }
     }
@@ -66,29 +67,3 @@ func displayPokemonImage() -> some View {
         .frame(width: 200, height: 200)
 
 }
-
-
-//@MainActor
-//@ViewBuilder
-//func displayBlurredPokemonImage(viewModel: PokemonImageViewModel, gameState: GameState) -> some View {
-//    AsyncImage(url: viewModel.pokemonimageURL) { phase in
-//        if let image = phase.image {
-//            image.overlayBlockingColor()
-//            let _ = DispatchQueue.main.async {
-//                Pokemon.current.image = image
-//            }
-//        } else if phase.error != nil {
-//            // Error state
-//            Image(systemName: "x.square.fill")
-//        } else {
-//            // Loading state
-//            ProgressView()
-//        }
-//    }
-//    .frame(width: 200, height: 200)
-//    .onAppear(perform: {
-//        viewModel.getPokemon()
-//        gameState = .noGuess
-//
-//    })
-//}

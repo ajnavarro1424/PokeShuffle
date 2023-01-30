@@ -24,7 +24,7 @@
 		64F5EDDE296F81FD00F3DC97 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDDD296F81FD00F3DC97 /* Color+Ext.swift */; };
 		64F5EDE12970D4E000F3DC97 /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDE02970D4E000F3DC97 /* Int+Ext.swift */; };
 		64F5EDE32970E6C900F3DC97 /* ShuffleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDE22970E6C900F3DC97 /* ShuffleButtonView.swift */; };
-		64F5EDE52970E99900F3DC97 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDE42970E99900F3DC97 /* GameState.swift */; };
+		64F5EDE52970E99900F3DC97 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDE42970E99900F3DC97 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		64F5EDDD296F81FD00F3DC97 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		64F5EDE02970D4E000F3DC97 /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		64F5EDE22970E6C900F3DC97 /* ShuffleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleButtonView.swift; sourceTree = "<group>"; };
-		64F5EDE42970E99900F3DC97 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		64F5EDE42970E99900F3DC97 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,6 @@
 				64842AEE29673E4D002C6A35 /* Assets.xcassets */,
 				64F5EDDF2970D4B800F3DC97 /* Extensions */,
 				64842AF029673E4D002C6A35 /* Preview Content */,
-				64F5EDE42970E99900F3DC97 /* GameState.swift */,
 			);
 			path = PokeShuffle;
 			sourceTree = "<group>";
@@ -167,6 +166,7 @@
 		64842B2329690642002C6A35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				64F5EDE42970E99900F3DC97 /* Game.swift */,
 				64842B242969065D002C6A35 /* Pokemon.swift */,
 			);
 			path = Models;
@@ -336,7 +336,7 @@
 				64F5EDE32970E6C900F3DC97 /* ShuffleButtonView.swift in Sources */,
 				64842B1F29679C37002C6A35 /* PokemonImageViewModel.swift in Sources */,
 				64842B222968898B002C6A35 /* PokemonImageView.swift in Sources */,
-				64F5EDE52970E99900F3DC97 /* GameState.swift in Sources */,
+				64F5EDE52970E99900F3DC97 /* Game.swift in Sources */,
 				64842B252969065D002C6A35 /* Pokemon.swift in Sources */,
 				64842B28296E039B002C6A35 /* SubmitButtonView.swift in Sources */,
 			);

@@ -10,12 +10,11 @@ import SwiftUI
 
 struct ShuffleButtonView: View {
 
-    @Binding var gameState: GameState
+    @EnvironmentObject var game: Game
 
     var body: some View {
         Button {
-            self.gameState = .shuffle
-
+            game.guessState = .shuffle
         } label: {
             Text("Shuffle")
                 .frame(width: 280, height: 50)
