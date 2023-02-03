@@ -14,17 +14,12 @@ struct ShuffleButtonView: View {
 
     var body: some View {
         Button {
-            game.guessState = .shuffle
+            game.guessState = .reset
         } label: {
-            Text("Shuffle")
-                .frame(width: 280, height: 50)
-                .foregroundColor(Color("pokemonNavyBlue"))
-                .background(.white)
-                .font(.system(size: 25, weight: .medium, design: .default))
-                .cornerRadius(30)
+            Image(systemName: "shuffle")
         }
+        .buttonStyle(PokemonButton())
+        .padding(.top, 10)
 
     }
 }
-
-

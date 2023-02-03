@@ -14,9 +14,8 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             BackgroundView()
-            VStack() {
-                Spacer()
-                VStack() {
+            VStack(spacing: 15) {
+                VStack(spacing: 15) {
                     StreakTextView()
                     Image("pokeball")
                         .resizable()
@@ -30,13 +29,14 @@ struct ContentView: View {
                 PokemonLogoTextView()
                 GuessTextFieldView()
                     .padding(.top, 10)
-                SubmitButtonView()
-                    .padding(.top, 10)
+                if (game.isGameOver) {
+                    RestartButtonView()
+                } else {
+                    SubmitButtonView()
+                    ShuffleButtonView()
 
-                ShuffleButtonView()
-                    .padding(.top, 10)
+                }
                 Spacer()
-
             }
             .environmentObject(game)
             .padding(.top, 10)
@@ -65,9 +65,17 @@ struct RemainingGuessesView: View {
     @EnvironmentObject var game: Game
 
     var body: some View {
-        StrokeText(text: "Guesses: \(game.remainingGuesses)",
-                   textSize: 25,
-                   strokeWidth: 1.50)
+        HStack(spacing: 15) {
+            Image(systemName: "questionmark.diamond")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.pokemonYellow, Color.pokemonNavyBlue)
+            StrokeText(text: "\(game.remainingGuesses)",
+                       textSize: 35,
+                       strokeWidth: 2)
+            .animation(.linear, value: game.remainingGuesses)
+        }
     }
 }
 
@@ -76,9 +84,19 @@ struct StreakTextView: View {
     @EnvironmentObject var game: Game
 
     var body: some View {
-        StrokeText(text: "Streak: \(game.streakCount)",
-                   textSize: 25,
-                   strokeWidth: 1.50)
+
+        HStack(spacing: 15) {
+            Image(systemName: "star.square")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.pokemonYellow, Color.pokemonNavyBlue)
+            StrokeText(text: "\(game.streakCount)",
+                       textSize: 35,
+                       strokeWidth: 2)
+
+        }
+
     }
 }
 
@@ -93,14 +111,13 @@ struct PokemonLogoTextView: View {
 
 struct GuessStateTextView: View {
 
-//    @Binding var gameState: GameState
     @EnvironmentObject var game: Game
 
     var gameText: String {
         switch game.guessState {
         case .guessMatch, .guessMismatch:
             return Pokemon.currentName.capitalized
-        case .emptyGuess, .noGuess, .shuffle:
+        case .noGuess, .reset:
             return "?"
         }
     }
@@ -109,7 +126,7 @@ struct GuessStateTextView: View {
         switch(game.guessState) {
         case .guessMatch, .guessMismatch:
             return 25
-        case .emptyGuess, .noGuess, .shuffle:
+        case .noGuess, .reset:
             return 100
         }
     }
@@ -118,7 +135,7 @@ struct GuessStateTextView: View {
         switch(game.guessState) {
         case .guessMatch, .guessMismatch:
             return 1.0
-        case .emptyGuess, .noGuess, .shuffle:
+        case .noGuess, .reset:
             return 2.5
         }
     }
@@ -178,9 +195,10 @@ struct GuessTextFieldView: View {
     var body: some View  {
         TextField("", text: $game.pokemonGuess)
             .multilineTextAlignment(.center)
-            .frame(width: 280, height: 50)
+            .frame(width: 250, height: 50)
             .background(Color.white)
             .disableAutocorrection(true)
+            .tint(Color.pokemonNavyBlue)
 
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640538EA298867980057B16C /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640538E9298867980057B16C /* Styles.swift */; };
+		640538EC29886B0E0057B16C /* RestartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640538EB29886B0E0057B16C /* RestartButtonView.swift */; };
 		64842AEB29673E4C002C6A35 /* PokeShuffleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64842AEA29673E4C002C6A35 /* PokeShuffleApp.swift */; };
 		64842AED29673E4C002C6A35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64842AEC29673E4C002C6A35 /* ContentView.swift */; };
 		64842AEF29673E4D002C6A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64842AEE29673E4D002C6A35 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		640538E9298867980057B16C /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		640538EB29886B0E0057B16C /* RestartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartButtonView.swift; sourceTree = "<group>"; };
 		64842AE729673E4C002C6A35 /* PokeShuffle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeShuffle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64842AEA29673E4C002C6A35 /* PokeShuffleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeShuffleApp.swift; sourceTree = "<group>"; };
 		64842AEC29673E4C002C6A35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				64842AEE29673E4D002C6A35 /* Assets.xcassets */,
 				64F5EDDF2970D4B800F3DC97 /* Extensions */,
 				64842AF029673E4D002C6A35 /* Preview Content */,
+				640538E9298867980057B16C /* Styles.swift */,
 			);
 			path = PokeShuffle;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 			children = (
 				64842B27296E039B002C6A35 /* SubmitButtonView.swift */,
 				64F5EDE22970E6C900F3DC97 /* ShuffleButtonView.swift */,
+				640538EB29886B0E0057B16C /* RestartButtonView.swift */,
 			);
 			path = ButtonView;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 			files = (
 				64842AED29673E4C002C6A35 /* ContentView.swift in Sources */,
 				64F5EDDE296F81FD00F3DC97 /* Color+Ext.swift in Sources */,
+				640538EA298867980057B16C /* Styles.swift in Sources */,
 				64842AEB29673E4C002C6A35 /* PokeShuffleApp.swift in Sources */,
 				64842B1D2967626A002C6A35 /* PokemonService.swift in Sources */,
 				64F5EDE12970D4E000F3DC97 /* Int+Ext.swift in Sources */,
@@ -338,6 +345,7 @@
 				64842B222968898B002C6A35 /* PokemonImageView.swift in Sources */,
 				64F5EDE52970E99900F3DC97 /* Game.swift in Sources */,
 				64842B252969065D002C6A35 /* Pokemon.swift in Sources */,
+				640538EC29886B0E0057B16C /* RestartButtonView.swift in Sources */,
 				64842B28296E039B002C6A35 /* SubmitButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

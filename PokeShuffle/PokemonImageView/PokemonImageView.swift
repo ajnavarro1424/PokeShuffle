@@ -20,7 +20,7 @@ struct PokemonImageView: View {
         else if case .guessMismatch = game.guessState {
             return AnyView(displayPokemonImage())
         }
-        else if case .shuffle = game.guessState {
+        else if case .reset = game.guessState {
             return AnyView(ProgressView()
                 .tint(Color.pokemonNavyBlue)
                 .frame(width: 200, height: 200)

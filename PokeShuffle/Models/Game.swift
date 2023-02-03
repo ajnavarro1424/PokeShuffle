@@ -19,23 +19,34 @@ class Game: ObservableObject {
         didSet {
             // End game if no more guesses
             if remainingGuesses == 0 {
-                isGameOver.toggle()
+                isGameOver = true
             }
         }
     }
 
+    // Context of the game in relation to the guess
     enum GuessState: String {
         case guessMatch
         case guessMismatch
-        case emptyGuess
         case noGuess
-        case shuffle
+        case reset
+
+        var hasGuessed: Bool {
+            switch(self) {
+                case .guessMatch, .guessMismatch: return true
+                default: return false
+            }
+        }
     }
 
     func decrementGuesses() {
         if remainingGuesses > 0 {
             remainingGuesses -= 1
         }
+    }
+
+    func resetGuesses() {
+        remainingGuesses = 3
     }
 
     func resetStreak() {

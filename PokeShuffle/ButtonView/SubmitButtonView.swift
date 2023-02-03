@@ -18,17 +18,10 @@ struct SubmitButtonView: View {
         Button {
             viewModel.validatePokemon(game: game)
         } label: {
-            Text("Submit")
-                .frame(width: 280, height: 50)
-                .foregroundColor(Color("pokemonNavyBlue"))
-                .background(.white)
-                .font(.system(size: 25, weight: .medium, design: .default))
-                .cornerRadius(30)
+            Image(systemName: "checkmark")
         }
-        .disabled(game.isGameOver)
-        .onAppear(perform: {
-//            viewModel.setup(game)
-        })
+        .buttonStyle(PokemonButton())
+        .padding(.top, 10)
     }
 
 
@@ -36,27 +29,30 @@ struct SubmitButtonView: View {
 
 class SubmitButtonViewModel {
 
-//    var game: Game?
-
     // Validates pokemon, guesses, and streak
     func validatePokemon(game: Game) {
-//        guard let game = self.game else {
-//            fatalError("Game is nil")
-//        }
+
         // Handle empty string
         if game.pokemonGuess.isEmpty {
-            game.guessState = .emptyGuess
+            DispatchQueue.main.async {
+                game.guessState = .noGuess
+            }
+        // Guess Match
         } else if game.pokemonGuess.lowercased() == Pokemon.currentName {
-            game.guessState = .guessMatch
-            game.streakCount += 1
+            DispatchQueue.main.async {
+                game.guessState = .guessMatch
+                game.streakCount += 1
+                game.pokemonGuess = ""
+            }
+
+        // Guess Mismatch
         } else {
-            game.guessState = .guessMismatch
-            game.resetStreak()
-            game.decrementGuesses()
+            DispatchQueue.main.async {
+                game.guessState = .guessMismatch
+                game.resetStreak()
+                game.decrementGuesses()
+                game.pokemonGuess = ""
+            }
         }
     }
-
-//    func setup(_ game: Game) {
-//        self.game = game
-//    }
 }
