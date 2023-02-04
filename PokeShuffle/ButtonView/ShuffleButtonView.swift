@@ -14,11 +14,11 @@ struct ShuffleButtonView: View {
 
     var body: some View {
         Button {
-            game.guessState = .reset
+            game.state = .ready
         } label: {
             Image(systemName: "shuffle")
         }
-        .buttonStyle(PokemonButton())
+        .buttonStyle(WhiteButton())
         .padding(.top, 10)
 
     }

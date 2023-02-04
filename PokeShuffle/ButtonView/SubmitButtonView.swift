@@ -20,8 +20,8 @@ struct SubmitButtonView: View {
         } label: {
             Image(systemName: "checkmark")
         }
-        .buttonStyle(PokemonButton())
-        .padding(.top, 10)
+        .disabled(game.state.hasGuessed)
+        .buttonStyle(WhiteButton(hasGuessed: game.state.hasGuessed))
     }
 
 
@@ -35,12 +35,12 @@ class SubmitButtonViewModel {
         // Handle empty string
         if game.pokemonGuess.isEmpty {
             DispatchQueue.main.async {
-                game.guessState = .noGuess
+                game.state = .noGuess
             }
         // Guess Match
         } else if game.pokemonGuess.lowercased() == Pokemon.currentName {
             DispatchQueue.main.async {
-                game.guessState = .guessMatch
+                game.state = .guessMatch
                 game.streakCount += 1
                 game.pokemonGuess = ""
             }
@@ -48,7 +48,7 @@ class SubmitButtonViewModel {
         // Guess Mismatch
         } else {
             DispatchQueue.main.async {
-                game.guessState = .guessMismatch
+                game.state = .guessMismatch
                 game.resetStreak()
                 game.decrementGuesses()
                 game.pokemonGuess = ""

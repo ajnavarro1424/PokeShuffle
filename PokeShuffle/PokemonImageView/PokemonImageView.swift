@@ -14,19 +14,19 @@ struct PokemonImageView: View {
     @StateObject private var viewModel = PokemonImageViewModel()
 
     var body: some View {
-        if case .guessMatch = game.guessState {
+        if case .guessMatch = game.state {
             return AnyView(displayPokemonImage())
         }
-        else if case .guessMismatch = game.guessState {
+        else if case .guessMismatch = game.state {
             return AnyView(displayPokemonImage())
         }
-        else if case .reset = game.guessState {
+        else if case .ready = game.state {
             return AnyView(ProgressView()
                 .tint(Color.pokemonNavyBlue)
                 .frame(width: 200, height: 200)
                 .onAppear(perform: {
                     viewModel.refreshModel()
-                    game.guessState = .noGuess
+                    game.state = .noGuess
                 }))
         }
         else {
@@ -52,7 +52,7 @@ struct PokemonImageView: View {
             .frame(width: 200, height: 200)
             .onAppear(perform: {
                 viewModel.fetchPokemon()
-                game.guessState = .noGuess
+                game.state = .noGuess
             }))
         }
     }

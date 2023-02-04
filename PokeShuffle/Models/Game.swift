@@ -11,25 +11,25 @@ import SwiftUI
 
 class Game: ObservableObject {
 
-    @Published var isGameOver: Bool = false
-    @Published var guessState: GuessState = .noGuess
+    @Published var state: State = .noGuess
     @Published var pokemonGuess: String = ""
     @Published var streakCount: Int = 0
     @Published var remainingGuesses: Int = 3 {
         didSet {
             // End game if no more guesses
             if remainingGuesses == 0 {
-                isGameOver = true
+                self.state = .gameOver
             }
         }
     }
 
     // Context of the game in relation to the guess
-    enum GuessState: String {
+    enum State: String {
+        case ready
         case guessMatch
         case guessMismatch
         case noGuess
-        case reset
+        case gameOver
 
         var hasGuessed: Bool {
             switch(self) {
@@ -37,6 +37,8 @@ class Game: ObservableObject {
                 default: return false
             }
         }
+
+        var isGameOver: Bool {  self == .gameOver ? true : false }
     }
 
     func decrementGuesses() {

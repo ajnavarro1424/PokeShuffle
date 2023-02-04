@@ -29,7 +29,7 @@ struct ContentView: View {
                 PokemonLogoTextView()
                 GuessTextFieldView()
                     .padding(.top, 10)
-                if (game.isGameOver) {
+                if (game.state.isGameOver) {
                     RestartButtonView()
                 } else {
                     SubmitButtonView()
@@ -66,15 +66,15 @@ struct RemainingGuessesView: View {
 
     var body: some View {
         HStack(spacing: 15) {
-            Image(systemName: "questionmark.diamond")
+            Image(systemName: "person.fill.questionmark")
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
                 .symbolRenderingMode(.palette)
                 .foregroundStyle(Color.pokemonYellow, Color.pokemonNavyBlue)
             StrokeText(text: "\(game.remainingGuesses)",
                        textSize: 35,
                        strokeWidth: 2)
-            .animation(.linear, value: game.remainingGuesses)
         }
     }
 }
@@ -88,6 +88,7 @@ struct StreakTextView: View {
         HStack(spacing: 15) {
             Image(systemName: "star.square")
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
                 .symbolRenderingMode(.palette)
                 .foregroundStyle(Color.pokemonYellow, Color.pokemonNavyBlue)
@@ -114,28 +115,28 @@ struct GuessStateTextView: View {
     @EnvironmentObject var game: Game
 
     var gameText: String {
-        switch game.guessState {
+        switch game.state {
         case .guessMatch, .guessMismatch:
             return Pokemon.currentName.capitalized
-        case .noGuess, .reset:
+        case .noGuess, .ready, .gameOver:
             return "?"
         }
     }
 
     var textSize: CGFloat {
-        switch(game.guessState) {
+        switch(game.state) {
         case .guessMatch, .guessMismatch:
             return 25
-        case .noGuess, .reset:
+        case .noGuess, .ready, .gameOver:
             return 100
         }
     }
 
     var strokeWidth: CGFloat {
-        switch(game.guessState) {
+        switch(game.state) {
         case .guessMatch, .guessMismatch:
             return 1.0
-        case .noGuess, .reset:
+        case .noGuess, .ready, .gameOver:
             return 2.5
         }
     }
