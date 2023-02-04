@@ -8,14 +8,23 @@
 import Foundation
 import SwiftUI
 
-struct PokemonButton: ButtonStyle {
+struct WhiteButton: ButtonStyle {
+
+    let hasGuessed: Bool
+
+    init(hasGuessed: Bool = false) {
+        self.hasGuessed = hasGuessed
+    }
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 250, height: 50)
             .foregroundColor(Color.pokemonNavyBlue)
-            .background(.white)
             .font(.system(size: 25, weight: .medium, design: .default))
+            .background(.white)
+            .opacity(hasGuessed ? 0.50 : 100)
             .cornerRadius(30)
+
     }
 }
 

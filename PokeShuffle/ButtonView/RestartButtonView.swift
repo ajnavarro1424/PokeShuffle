@@ -15,14 +15,13 @@ struct RestartButtonView: View {
     var body: some View {
         Button {
             DispatchQueue.main.async {
-                game.guessState = .reset
-                game.isGameOver = false
+                game.state = .ready
                 game.resetGuesses()
             }
         } label: {
             Image(systemName: "gobackward")
         }
-        .buttonStyle(PokemonButton())
+        .buttonStyle(WhiteButton())
         .padding(.top, 10)
 
     }
