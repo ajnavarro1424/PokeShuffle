@@ -60,7 +60,7 @@ struct PokemonImageView: View {
 
 @ViewBuilder
 func displayPokemonImage() -> some View {
-    Pokemon.currentImage
+    PokemonCache.image
         .resizable()
         .renderingMode(.original)
         .aspectRatio(contentMode: .fit)
