@@ -24,10 +24,10 @@ class PokemonImageViewModel: ObservableObject {
                 self?.logger.log("\(error.localizedDescription)")
                 fatalError("getPokemon network error")
             }
-            self?.pokemonName = Pokemon.currentName
+            self?.pokemonName = PokemonCache.name
 
             DispatchQueue.main.async {
-                self?.pokemonimageURL = Pokemon.currentImageURL
+                self?.pokemonimageURL = PokemonCache.frontImageURL
             }
         }
     }
@@ -37,6 +37,6 @@ class PokemonImageViewModel: ObservableObject {
     }
 
     func updatePokemonModel(with image: Image) {
-        Pokemon.current.image = image
+        PokemonCache.shared.frontDefaultImage = image
     }
 }

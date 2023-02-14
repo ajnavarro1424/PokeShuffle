@@ -7,42 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
-
-    @StateObject var game = Game()
-    
+struct ContentView: View {    
     var body: some View {
         ZStack {
             BackgroundView()
-            VStack(spacing: 15) {
-                VStack(spacing: 15) {
-                    StreakTextView()
-                    Image("pokeball")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    RemainingGuessesView()
-                }
-                HStack {
-                    PokemonImageView()
-                    GuessStateTextView()
-                }
-                PokemonLogoTextView()
-                GuessTextFieldView()
-                    .padding(.top, 10)
-                if (game.state.isGameOver) {
-                    RestartButtonView()
-                } else {
-                    SubmitButtonView()
-                    ShuffleButtonView()
-
-                }
-                Spacer()
-            }
-            .environmentObject(game)
-            .padding(.top, 10)
+            PokeShuffleView()
         }
-
-        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -103,9 +74,9 @@ struct StreakTextView: View {
 
 struct PokemonLogoTextView: View {
     var body: some View {
-        StrokeText(text: "Pokémon", textSize: 55)
+        StrokeText(text: "PokéShuffle", textSize: 40)
+            .font(.title3)
             .foregroundColor(Color.pokemonYellow)
-            .font(.system(size: 55, weight: .bold, design: .default))
     }
 }
 
@@ -117,7 +88,7 @@ struct GuessStateTextView: View {
     var gameText: String {
         switch game.state {
         case .guessMatch, .guessMismatch:
-            return Pokemon.currentName.capitalized
+            return PokemonCache.name.capitalized
         case .noGuess, .ready, .gameOver:
             return "?"
         }

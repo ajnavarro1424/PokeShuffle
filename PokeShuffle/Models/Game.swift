@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUI
+import PokemonAPI
 
 
 class Game: ObservableObject {
@@ -22,6 +22,7 @@ class Game: ObservableObject {
             }
         }
     }
+    @Published var pokemonHistory: [PKMPokemon] = []
 
     // Context of the game in relation to the guess
     enum State: String {

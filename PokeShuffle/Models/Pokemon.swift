@@ -6,37 +6,51 @@
 //
 
 import Foundation
+import PokemonAPI
 import SwiftUI
 
-class Pokemon {
+class Pokemon: PKMPokemon {
+//    var frontDefaultImage: Image? = nil
 
-    static let current = Pokemon()
 
-    var name: String?
-    var imageURL: URL?
-    var image: Image?
+}
 
-    init(name: String? = nil, imageURL: URL? = nil) {
-        self.name = name
-        self.imageURL = imageURL
+class PokemonCache {
+
+    static var shared = PokemonCache()
+
+    var pokemon: PKMPokemon?
+
+    var frontDefaultImage: Image?
+
+    var history: [PKMPokemon] = []
+
+    init(pokemon: PKMPokemon? = nil) {
+        self.pokemon = pokemon
     }
 
-    static var currentName: String {
-        guard let name = Pokemon.current.name else {
+    func setCurrentPokemon(pokemon: PKMPokemon?) {
+        self.pokemon = pokemon
+    }
+
+    // MARK: Helper Methods
+    static var name: String {
+        guard let name = PokemonCache.shared.pokemon?.name else {
             fatalError("Pokemon name nil")
         }
         return name
     }
 
-    static var currentImageURL: URL {
-        guard let url = Pokemon.current.imageURL else {
+    static var frontImageURL: URL {
+        guard let frontDefault = PokemonCache.shared.pokemon?.sprites?.frontDefault,
+                let url = URL(string: frontDefault) else {
             fatalError("Pokemon url nil")
         }
         return url
     }
 
-    static var currentImage: Image {
-        guard let image = Pokemon.current.image else {
+    static var image: Image {
+        guard let image = PokemonCache.shared.frontDefaultImage else {
             fatalError("Pokemon image nil")
         }
         return image

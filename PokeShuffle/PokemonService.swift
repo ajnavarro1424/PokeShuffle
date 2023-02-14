@@ -21,16 +21,10 @@ class PokemonService {
         PokemonAPI().pokemonService.fetchPokemon(id) { [weak self] result in
             switch(result) {
             case .success(let pokemon):
-                if let imageURLString = pokemon.sprites?.frontDefault,
-                    let imageURL = URL(string: imageURLString),
-                    let name = pokemon.name {
-                        // Set the values for the Pokemon singleton
-                        Pokemon.current.name = name
-                        Pokemon.current.imageURL = imageURL
+                PokemonCache.shared.setCurrentPokemon(pokemon: pokemon)
+                self?.logger.log("getPokemon success: \n\(pokemon.name ?? ""), \(pokemon.sprites?.frontDefault ?? "")")
+                completion(nil)
 
-                        completion(nil)
-                        self?.logger.log("getPokemon success: \n\(name), \(imageURL)")
-                }
             case .failure(let error):
                 completion(error)
                 self?.logger.log("\(error.localizedDescription)")

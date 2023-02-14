@@ -22,6 +22,8 @@
 		64842B222968898B002C6A35 /* PokemonImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64842B212968898B002C6A35 /* PokemonImageView.swift */; };
 		64842B252969065D002C6A35 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64842B242969065D002C6A35 /* Pokemon.swift */; };
 		64842B28296E039B002C6A35 /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64842B27296E039B002C6A35 /* SubmitButtonView.swift */; };
+		64A721EC298E1BF300C4BAFD /* PokeBallImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A721EB298E1BF300C4BAFD /* PokeBallImageView.swift */; };
+		64A721EE298E1E8800C4BAFD /* PokeShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A721ED298E1E8800C4BAFD /* PokeShuffleView.swift */; };
 		64D652442971FAD90076E959 /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D652432971FAD90076E959 /* Image+Ext.swift */; };
 		64F5EDDE296F81FD00F3DC97 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDDD296F81FD00F3DC97 /* Color+Ext.swift */; };
 		64F5EDE12970D4E000F3DC97 /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5EDE02970D4E000F3DC97 /* Int+Ext.swift */; };
@@ -64,6 +66,8 @@
 		64842B212968898B002C6A35 /* PokemonImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonImageView.swift; sourceTree = "<group>"; };
 		64842B242969065D002C6A35 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		64842B27296E039B002C6A35 /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
+		64A721EB298E1BF300C4BAFD /* PokeBallImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeBallImageView.swift; sourceTree = "<group>"; };
+		64A721ED298E1E8800C4BAFD /* PokeShuffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeShuffleView.swift; sourceTree = "<group>"; };
 		64D652432971FAD90076E959 /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		64F5EDDD296F81FD00F3DC97 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		64F5EDE02970D4E000F3DC97 /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
@@ -120,10 +124,9 @@
 		64842AE929673E4C002C6A35 /* PokeShuffle */ = {
 			isa = PBXGroup;
 			children = (
+				64A721E8298E1B9D00C4BAFD /* Views */,
 				64842AEC29673E4C002C6A35 /* ContentView.swift */,
 				64842AEA29673E4C002C6A35 /* PokeShuffleApp.swift */,
-				64842B2029688968002C6A35 /* PokemonImageView */,
-				64842B26296E0331002C6A35 /* ButtonView */,
 				64842B2329690642002C6A35 /* Models */,
 				64842B1C2967626A002C6A35 /* PokemonService.swift */,
 				64842AEE29673E4D002C6A35 /* Assets.xcassets */,
@@ -185,6 +188,17 @@
 				640538EB29886B0E0057B16C /* RestartButtonView.swift */,
 			);
 			path = ButtonView;
+			sourceTree = "<group>";
+		};
+		64A721E8298E1B9D00C4BAFD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				64842B26296E0331002C6A35 /* ButtonView */,
+				64842B2029688968002C6A35 /* PokemonImageView */,
+				64A721EB298E1BF300C4BAFD /* PokeBallImageView.swift */,
+				64A721ED298E1E8800C4BAFD /* PokeShuffleView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		64F5EDDF2970D4B800F3DC97 /* Extensions */ = {
@@ -340,6 +354,7 @@
 				64842B1D2967626A002C6A35 /* PokemonService.swift in Sources */,
 				64F5EDE12970D4E000F3DC97 /* Int+Ext.swift in Sources */,
 				64D652442971FAD90076E959 /* Image+Ext.swift in Sources */,
+				64A721EE298E1E8800C4BAFD /* PokeShuffleView.swift in Sources */,
 				64F5EDE32970E6C900F3DC97 /* ShuffleButtonView.swift in Sources */,
 				64842B1F29679C37002C6A35 /* PokemonImageViewModel.swift in Sources */,
 				64842B222968898B002C6A35 /* PokemonImageView.swift in Sources */,
@@ -347,6 +362,7 @@
 				64842B252969065D002C6A35 /* Pokemon.swift in Sources */,
 				640538EC29886B0E0057B16C /* RestartButtonView.swift in Sources */,
 				64842B28296E039B002C6A35 /* SubmitButtonView.swift in Sources */,
+				64A721EC298E1BF300C4BAFD /* PokeBallImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +529,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,6 +559,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

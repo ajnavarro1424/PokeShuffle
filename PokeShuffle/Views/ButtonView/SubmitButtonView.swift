@@ -38,7 +38,7 @@ class SubmitButtonViewModel {
                 game.state = .noGuess
             }
         // Guess Match
-        } else if game.pokemonGuess.lowercased() == Pokemon.currentName {
+        } else if game.pokemonGuess.lowercased() == PokemonCache.name {
             DispatchQueue.main.async {
                 game.state = .guessMatch
                 game.streakCount += 1
