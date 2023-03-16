@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {    
+struct ContentView: View {
     var body: some View {
         ZStack {
             BackgroundView()
@@ -80,7 +80,6 @@ struct PokemonLogoTextView: View {
     }
 }
 
-
 struct GuessStateTextView: View {
 
     @EnvironmentObject var game: Game
@@ -95,7 +94,7 @@ struct GuessStateTextView: View {
     }
 
     var textSize: CGFloat {
-        switch(game.state) {
+        switch game.state {
         case .guessMatch, .guessMismatch:
             return 25
         case .noGuess, .ready, .gameOver:
@@ -104,7 +103,7 @@ struct GuessStateTextView: View {
     }
 
     var strokeWidth: CGFloat {
-        switch(game.state) {
+        switch game.state {
         case .guessMatch, .guessMismatch:
             return 1.0
         case .noGuess, .ready, .gameOver:
@@ -142,12 +141,12 @@ struct StrokeText: View {
     }
 
     var body: some View {
-        ZStack{
-            ZStack{
-                Text(text).offset(x:  strokeWidth, y:  strokeWidth)
+        ZStack {
+            ZStack {
+                Text(text).offset(x: strokeWidth, y: strokeWidth)
                 Text(text).offset(x: -strokeWidth, y: -strokeWidth)
-                Text(text).offset(x: -strokeWidth, y:  strokeWidth)
-                Text(text).offset(x:  strokeWidth, y: -strokeWidth)
+                Text(text).offset(x: -strokeWidth, y: strokeWidth)
+                Text(text).offset(x: strokeWidth, y: -strokeWidth)
             }
             .foregroundColor(strokeColor)
             Text(text)
@@ -164,7 +163,7 @@ struct GuessTextFieldView: View {
 
     @EnvironmentObject var game: Game
 
-    var body: some View  {
+    var body: some View {
         TextField("", text: $game.pokemonGuess)
             .multilineTextAlignment(.center)
             .frame(width: 250, height: 50)

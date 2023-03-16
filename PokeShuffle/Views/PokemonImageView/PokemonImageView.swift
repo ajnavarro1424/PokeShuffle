@@ -16,11 +16,9 @@ struct PokemonImageView: View {
     var body: some View {
         if case .guessMatch = game.state {
             return AnyView(displayPokemonImage())
-        }
-        else if case .guessMismatch = game.state {
+        } else if case .guessMismatch = game.state {
             return AnyView(displayPokemonImage())
-        }
-        else if case .ready = game.state {
+        } else if case .ready = game.state {
             return AnyView(ProgressView()
                 .tint(Color.pokemonNavyBlue)
                 .frame(width: 200, height: 200)
@@ -28,8 +26,7 @@ struct PokemonImageView: View {
                     viewModel.refreshModel()
                     game.state = .noGuess
                 }))
-        }
-        else {
+        } else {
             return AnyView(AsyncImage(url: viewModel.pokemonimageURL) { phase in
                 if let image = phase.image {
                     image.overlayBlockingColor()

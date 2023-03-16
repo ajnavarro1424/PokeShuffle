@@ -8,7 +8,6 @@
 import Foundation
 import PokemonAPI
 
-
 class Game: ObservableObject {
 
     @Published var state: State = .noGuess
@@ -33,7 +32,7 @@ class Game: ObservableObject {
         case gameOver
 
         var hasGuessed: Bool {
-            switch(self) {
+            switch self {
                 case .guessMatch, .guessMismatch: return true
                 default: return false
             }
@@ -56,5 +55,3 @@ class Game: ObservableObject {
         streakCount = 0
     }
 }
-
-

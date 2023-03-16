@@ -19,7 +19,7 @@ class PokemonService {
 
         logger.log("getPokemon call with id: \(id)")
         PokemonAPI().pokemonService.fetchPokemon(id) { [weak self] result in
-            switch(result) {
+            switch result {
             case .success(let pokemon):
                 PokemonCache.shared.setCurrentPokemon(pokemon: pokemon)
                 self?.logger.log("getPokemon success: \n\(pokemon.name ?? ""), \(pokemon.sprites?.frontDefault ?? "")")

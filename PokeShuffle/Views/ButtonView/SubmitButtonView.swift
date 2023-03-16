@@ -24,7 +24,6 @@ struct SubmitButtonView: View {
         .buttonStyle(WhiteButton(hasGuessed: game.state.hasGuessed))
     }
 
-
 }
 
 class SubmitButtonViewModel {

@@ -25,7 +25,7 @@ struct PokeShuffleView: View {
                     GuessStateTextView()
                 }
                 GuessTextFieldView()
-                if (game.state.isGameOver) {
+                if game.state.isGameOver {
                     RestartButtonView()
                 } else {
                     SubmitButtonView()

@@ -12,7 +12,6 @@ import SwiftUI
 class Pokemon: PKMPokemon {
 //    var frontDefaultImage: Image? = nil
 
-
 }
 
 class PokemonCache {
