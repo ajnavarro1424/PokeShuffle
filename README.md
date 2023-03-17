@@ -1,5 +1,8 @@
 # PokeShuffle
 
+<img src="https://user-images.githubusercontent.com/22483157/225975170-a7ce14eb-3427-4f7b-8dbe-26ca4417305b.gif" 
+alt="PokeShuffle-Obscured" width="250" height="500" />
+
 PokeShuffle is a game inspired from the Pokémon tv series pre-commercial break segment "Who's that Pokémon?". In this segment the audience would attempt the guess the idenitiy of a pokémon based on its obscured outline image, with the answer being revealed after the return from commerical break. 
 
 [Who's That Pokémon?](https://bulbapedia.bulbagarden.net/wiki/Who%27s_That_Pokémon%3F)
